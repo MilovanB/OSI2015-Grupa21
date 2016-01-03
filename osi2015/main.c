@@ -1,12 +1,22 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "admin.h"
 
 
-
-
-
-int main()
+void glavnimeni ()
 {
-    printf("Hello world!\n");
-    return 0;
+    if (priv=='A')
+        menia();
+    //if (priv=='N')
+      //  menin();
+
+
 }
+
+int main ()
+{
+
+    korijen=ucitaj_clanove(korijen);
+    login();
+    glavnimeni();
+
+}
+

@@ -1,0 +1,3 @@
+rbr.    username         sifra                 ime                 prezime             pr.
+====    ===============  ===================   ===============     ===============     ===
+1.      admin            admin                 admin               admin                A

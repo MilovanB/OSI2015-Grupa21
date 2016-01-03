@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1451841780 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\admin.c
+	"admin.h"
+
+1451841780 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\admin.h
+	"clan.h"
+
+1451839280 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\clan.h
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<windows.h>
+
+1451839280 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\clan.c
+	"clan.h"
+
