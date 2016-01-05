@@ -9,19 +9,23 @@
 #include <string.h>
 #include <windows.h>
 
+
 typedef struct {char username[15],pword[19],ime[15],prezime[15],pr;} clanovi;
 typedef struct cvor {clanovi b; struct cvor *lijevi,*desni;} CVOR;
 extern clanovi a;
 extern CVOR *korijen;
 extern char priv,ulogovani[20];
+extern char imepreduzeca[25];
 
-int postoji (); // provjera da li postoji datoteka
+int postoji (const char *); // provjera da li postoji datoteka
 CVOR* novi (clanovi *a);
 CVOR* dodaj (CVOR *korijen,clanovi *a);
 CVOR* ucitaj_clanove (CVOR *korijen);
 int trazi (char *username,char *password, CVOR *korijen);
 char* sifra (); // zvijezdice
 void login (); // logovanje    ostalo je jos centrirati
+clanovi* podaci (int i);  // unos novog clana
+CVOR* PromLicnihPod ();  // mijenjanje licnih podataka nekog clana
 
 
 

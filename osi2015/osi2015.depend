@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1451841780 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\admin.c
+1451950849 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\admin.c
 	"admin.h"
 
-1451841780 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\admin.h
+1451950849 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\admin.h
 	"clan.h"
 
-1451839280 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\clan.h
+1451952016 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\clan.h
 	<stdio.h>
 	<conio.h>
 	<ctype.h>
@@ -14,6 +14,87 @@
 	<string.h>
 	<windows.h>
 
-1451839280 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\clan.c
+1452010870 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\clan.c
+	"clan.h"
+
+1452011264 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\main.c
+	"admin.h"
+	"nabavljac.h"
+
+1451933305 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\radnik.c
+	"radnik.h"
+
+1451933305 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\radnik.h
+
+1452010846 source:c:\users\bosancic\desktop\osi2015-grupa21\osi2015\nabavljac.c
+	"nabavljac.h"
+
+1451952446 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\nabavljac.h
+	"clan.h"
+
+1452017510 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\admin.c
+	"admin.h"
+
+1451950849 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\admin.h
+	"clan.h"
+
+1452018469 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\clan.h
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<windows.h>
+
+1452019765 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\clan.c
+	"clan.h"
+
+1452011264 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\main.c
+	"admin.h"
+	"nabavljac.h"
+
+1451952446 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\nabavljac.h
+	"clan.h"
+
+1452011864 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\nabavljac.c
+	"nabavljac.h"
+
+1451933305 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\radnik.c
+	"radnik.h"
+
+1451933305 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\radnik.h
+
+1452017510 source:d:\osi2015-grupa21\osi2015\admin.c
+	"admin.h"
+
+1451950849 d:\osi2015-grupa21\osi2015\admin.h
+	"clan.h"
+
+1452018469 d:\osi2015-grupa21\osi2015\clan.h
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<windows.h>
+
+1452011264 source:d:\osi2015-grupa21\osi2015\main.c
+	"admin.h"
+	"nabavljac.h"
+
+1452030207 d:\osi2015-grupa21\osi2015\nabavljac.h
+	"clan.h"
+
+1452030551 source:d:\osi2015-grupa21\osi2015\nabavljac.c
+	"nabavljac.h"
+
+1451933305 source:d:\osi2015-grupa21\osi2015\radnik.c
+	"radnik.h"
+
+1451933305 d:\osi2015-grupa21\osi2015\radnik.h
+
+1452028124 source:d:\osi2015-grupa21\osi2015\clan.c
 	"clan.h"
 

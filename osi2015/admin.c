@@ -1,5 +1,13 @@
 #include "admin.h"
 
+char izbor1()
+{
+  fflush(stdout);
+ return getch();
+}
+
+
+
 CVOR* najmanji(CVOR* korijen)
 {
     while (korijen->lijevi != NULL) korijen=korijen->lijevi;
@@ -53,74 +61,7 @@ void inorder (CVOR *korijen) // sortiranje inorder
         }
 }
 
-clanovi* podaci (int i)  // unos novog clana
-{
-    char password[32];
-    int provjera,pomocna=0;
-    do
-    {
-        printf ("\nUSERNAME: ");
-        scanf ("%s",a.username);
-        provjera=trazi_bezpw (a.username,korijen,1);
-        if (provjera==1)
-        {
-            system ("COLOR C");
-            printf ("Ovaj username vec postoji!");
-            Sleep(500);
-            system("cls");
-            system("COLOR 7");
-        }
-    }
-    while (provjera==1);
-    do
-    {
-        if (pomocna!=0)
-        {
-            system ("cls");
-            printf ("USERNAME: %s\n",a.username);
-        }
-        strcpy(password,sifra());
-        printf ("\nPONOVITE ");
-        strcpy(a.pword,sifra());
-        pomocna=strcmp(a.pword,password);
-    }
-    while (pomocna!=0);
 
-    printf ("\nIME: ");
-    scanf ("%s",a.ime);
-    printf ("PREZIME:");
-    scanf ("%s",a.prezime);
-    if (i==1) do
-        {
-            system ("cls");
-            printf ("Unesite privilegiju radnika (A-admin, N-nabavka, R-radnik): ");
-            scanf ("%c",&a.pr);
-        }
-        while (a.pr!='A' && a.pr!='N' && a.pr!='R');
-    else
-    {
-        a.pr = priv;
-    }
-
-    return &a;
-}
-
-CVOR* PromLicnihPod ()  // mijenjanje licnih podataka nekog clana
-{
-    char pom[20];
-    system ("cls");
-    printf ("Za promjenu informacija unesite stari ");
-    strcpy(a.pword,sifra());
-    if (trazi(ulogovani,a.pword,korijen))
-    {
-        strcpy(pom,ulogovani);
-        memset(ulogovani,0,sizeof(ulogovani));
-        korijen=brisi(korijen,pom);
-        korijen=dodaj(korijen,podaci(0));
-        strcpy(ulogovani,a.username);
-    }
-
-}
 
 int trazi_bezpw (char *username,CVOR *korijen, int i)
 {
@@ -153,20 +94,20 @@ void menia() /// nije gotovo
 {
     char izbor;
     int provjera;
-    printf ("\nDobrodosli u administrativni panel!\n\n");
-    Sleep(100);
-    printf ("Za izbor pritisnite broj kraj zeljene opcije!\n");
+
     do
     {
-        printf ("\n\t 1 Pregled zaposlenih");
-        printf ("\n\t 2 Dodaj novog radnika\n");
-        printf ("\t 3 Obrisi radnika\n");
-        printf ("\t 4 Pregled statistike\n");
-        printf ("\t 5 Definisanje parametara sistema\n"); // nije uradjeno
-        printf ("\t 6 Izmjene sopstvenih informacija\n");
-        printf ("\t 7 Mijenjanje privilegija radnika\n");
-        printf ("\t 0 ODJAVA\n");
-        scanf ("\n%c",&izbor);
+    printf ("\t\t     Dobrodosli u administrativni panel!\n\n");
+    Sleep(100);
+    printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
+        printf ("\n\t\t 1 Pregled zaposlenih");
+        printf ("\n\t\t 2 Dodaj novog radnika\n");
+        printf ("\t\t 3 Obrisi radnika\n");
+        printf ("\t\t 4 Pregled statistike\n");
+        printf ("\t\t 5 Izmjene sopstvenih informacija\n");
+        printf ("\t\t 6 Mijenjanje privilegija radnika\n");
+        printf ("\t\t 0 ODJAVA\n");
+        izbor=izbor1();
         system("cls");
         if (izbor=='1')
         {
@@ -213,12 +154,11 @@ void menia() /// nije gotovo
             }
         }
         else if (izbor=='4') { } ///treba zavrsiti
-        else if (izbor=='5') { } ///treba pitati
-        else if (izbor=='6')
+        else if (izbor=='5')
         {
             PromLicnihPod();
         }
-        else if (izbor=='7')
+        else if (izbor=='6')
         {
             system ("cls");
             printf ("Unesite username naloga kome mijenjate privilegiju: ");
