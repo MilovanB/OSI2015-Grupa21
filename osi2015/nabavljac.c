@@ -20,12 +20,12 @@ char* generate()
         pom1[2]='5';
         pom1[3]=pom1[4]='0';
     }while(trazi_sifra(pom1,root,0));///radi
-    if (!trazi_sifra(pom1,root,0))
+    if (!trazi_sifra(pom1,root,1))
     {
      art.sifra[2]='5';
      art.sifra[3]=art.sifra[4]='0';
     }///zavrseno
-    else///(traziposifri(pom1,root))
+    if(trazi_sifra(pom1,root,1))
     {do{
         srand(time(0));
         art.sifra[2]=rand()%10+'0';

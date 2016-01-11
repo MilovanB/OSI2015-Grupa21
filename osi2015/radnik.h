@@ -4,8 +4,8 @@
 #include "clan.h"
 #include "nabavljac.h"
 
+void menir();
 void prodaja();
 int trazipoimenu(char*,NODE*);
-void menir();
 
 #endif // RADNIK_H_INCLUDED

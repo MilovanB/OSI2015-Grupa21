@@ -137,3 +137,40 @@
 	"clan.h"
 	"nabavljac.h"
 
+1452264545 source:c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\admin.c
+	"admin.h"
+
+1451950849 c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\admin.h
+	"clan.h"
+
+1452018469 c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\clan.h
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<windows.h>
+
+1452035135 source:c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\clan.c
+	"clan.h"
+
+1452289169 source:c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\main.c
+	"admin.h"
+	"nabavljac.h"
+	"radnik.h"
+
+1452288622 c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\nabavljac.h
+	<time.h>
+	"clan.h"
+
+1452265594 c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\radnik.h
+	"clan.h"
+	"nabavljac.h"
+
+1452288988 source:c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\nabavljac.c
+	"nabavljac.h"
+
+1452287371 source:c:\users\aljosa\desktop\osi2015-grupa21a\osi2015\radnik.c
+	"radnik.h"
+
