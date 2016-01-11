@@ -32,7 +32,7 @@
 1451952446 c:\users\bosancic\desktop\osi2015-grupa21\osi2015\nabavljac.h
 	"clan.h"
 
-1452017510 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\admin.c
+1452264545 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\admin.c
 	"admin.h"
 
 1451950849 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\admin.h
@@ -47,23 +47,25 @@
 	<string.h>
 	<windows.h>
 
-1452019765 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\clan.c
+1452035135 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\clan.c
 	"clan.h"
 
-1452011264 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\main.c
+1452263987 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\main.c
 	"admin.h"
 	"nabavljac.h"
 
-1451952446 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\nabavljac.h
+1452083362 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\nabavljac.h
 	"clan.h"
 
-1452011864 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\nabavljac.c
+1452264545 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\nabavljac.c
 	"nabavljac.h"
 
-1451933305 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\radnik.c
+1452287220 source:c:\users\aljosa\desktop\osi2015-grupa21\osi2015\radnik.c
 	"radnik.h"
 
-1451933305 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\radnik.h
+1452265594 c:\users\aljosa\desktop\osi2015-grupa21\osi2015\radnik.h
+	"clan.h"
+	"nabavljac.h"
 
 1452017510 source:d:\osi2015-grupa21\osi2015\admin.c
 	"admin.h"
@@ -97,4 +99,41 @@
 
 1452028124 source:d:\osi2015-grupa21\osi2015\clan.c
 	"clan.h"
+
+1452264545 source:c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\admin.c
+	"admin.h"
+
+1451950849 c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\admin.h
+	"clan.h"
+
+1452018469 c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\clan.h
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<windows.h>
+
+1452035135 source:c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\clan.c
+	"clan.h"
+
+1452289169 source:c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\main.c
+	"admin.h"
+	"nabavljac.h"
+	"radnik.h"
+
+1452288622 c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\nabavljac.h
+	<time.h>
+	"clan.h"
+
+1452288988 source:c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\nabavljac.c
+	"nabavljac.h"
+
+1452287371 source:c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\radnik.c
+	"radnik.h"
+
+1452287969 c:\users\bosancic\desktop\proradi\osi2015-grupa21\osi2015\radnik.h
+	"clan.h"
+	"nabavljac.h"
 

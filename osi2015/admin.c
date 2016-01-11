@@ -104,8 +104,8 @@ void menia() /// nije gotovo
         printf ("\n\t\t 2 Dodaj novog radnika\n");
         printf ("\t\t 3 Obrisi radnika\n");
         printf ("\t\t 4 Pregled statistike\n");
-        printf ("\t\t 5 Izmjene sopstvenih informacija\n");
-        printf ("\t\t 6 Mijenjanje privilegija radnika\n");
+        printf ("\t\t 5 Mijenjanje privilegija radnika\n");
+        printf ("\t\t 9 Izmjene sopstvenih informacija\n");
         printf ("\t\t 0 ODJAVA\n");
         izbor=izbor1();
         system("cls");
@@ -154,11 +154,11 @@ void menia() /// nije gotovo
             }
         }
         else if (izbor=='4') { } ///treba zavrsiti
-        else if (izbor=='5')
+        else if (izbor=='9')
         {
             PromLicnihPod();
         }
-        else if (izbor=='6')
+        else if (izbor=='5')
         {
             system ("cls");
             printf ("Unesite username naloga kome mijenjate privilegiju: ");

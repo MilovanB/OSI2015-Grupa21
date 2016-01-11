@@ -1,6 +1,6 @@
 #include "admin.h"
 #include "nabavljac.h"
-
+#include "radnik.h"
 
 void glavnimeni ()
 {
@@ -8,6 +8,8 @@ void glavnimeni ()
         menia();
     if (priv=='N')
         menin();
+    if (priv=='R')
+        menir();
 }
 
 int main ()

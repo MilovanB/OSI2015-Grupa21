@@ -1,0 +1,8 @@
+SIFRA NAZIV                KOLICINA MJERA CIJENA VRSTA
+===== ==================== ======== ===== ====== ===============
+1     ananas                   2.00 kom     5.00 voce           
+3     paprika                 20.00 kg      2.00 povrce         
+2     ekser                  100.00 kom     0.50 alat           
+v0481 kruska               15000.00 kg      1.20 voce           
+v0500 jabuka               20000.00 kg      1.09 voce           
+9     jabuka                   0.00 kg      1.25 voce           

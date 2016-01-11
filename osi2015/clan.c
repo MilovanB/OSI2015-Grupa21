@@ -48,7 +48,7 @@ CVOR* ucitaj_clanove (CVOR *korijen) // ucitavanje iz datoteke i smijestanje u s
             printf (" Molimo Vas unesite ime Vase prodavnice: ");
             gets(imepreduzeca);
             system("cls");
-            printf ("Jos samo par koraka i Vasa prodavnica '%s' je spremna za koristenje!\n",imepreduzeca);
+            printf ("Jos samo par koraka i Vasa prodavnica '%s' je spremna za koristenje!\n\n",imepreduzeca);
             Sleep(100);
             printf ("Za prvo pokretanje programa potrebno je kreirati novog administratora!\n");
             korijen=dodaj(korijen,podaci(0));
@@ -188,7 +188,7 @@ clanovi* podaci (int i)  // unos novog clana
     {
         a.pr = priv;
     }
-
+system("cls");
     return &a;
 }
 

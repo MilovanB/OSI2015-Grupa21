@@ -1,0 +1,5 @@
+rbr.    username         sifra                 ime                 prezime             pr.
+====    ===============  ===================   ===============     ===============     ===
+1. 	admin		 admin		       Aljosa              Kotur                A
+2.	nab		 nab		       Aljosa		   Kotur  		N
+3.	rad		 rad		       Aljosa		   Kotur		R
