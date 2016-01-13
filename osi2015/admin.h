@@ -3,11 +3,13 @@
 
 #include "clan.h"
 char izbor1();
-int trazi_bezpw (char *username,CVOR *korijen, int i);
-CVOR* najmanji(CVOR* korijen);
-CVOR* brisi(CVOR *korijen, char* username);
+int trazi_bezpw (char *,CVOR *, int );
+CVOR* najmanji(CVOR* );
+CVOR* brisi(CVOR * ,char*);
+void upisiclan (CVOR* );
+void upisclan ();
 void zaglavlje (); //osnovno zaglavlje
-void inorder (CVOR *korijen); // sortiranje inorder
+void inorder (CVOR *); // sortiranje inorder
 void menia(); /// nije gotovo
 
 

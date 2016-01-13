@@ -1,6 +1,7 @@
 #include "nabavljac.h"
 NODE *root=0;
 artikal art;
+ptabela *roo=0;
 
 char izbor2()
 {
@@ -10,47 +11,46 @@ char izbor2()
 
 char* generate()
 {
-    char pom1[5];
-    int i=-1;
+    char pom1[6];
+    int i=0;
+    printf("%d",i);
     pom1[0]=art.sifra[0]=art.vrsta[0];
     do{
-        i++;
         pom1[1]='0'+i;
         art.sifra[1]='0'+i;
         pom1[2]='5';
         pom1[3]=pom1[4]='0';
+        pom1[5]=0;
+        ++i;
     }while(trazi_sifra(pom1,root,0));///radi
     if (!trazi_sifra(pom1,root,1))
     {
      art.sifra[2]='5';
      art.sifra[3]=art.sifra[4]='0';
+     art.sifra[5]=0;
     }///zavrseno
-    if(trazi_sifra(pom1,root,1))
+    else
     {do{
         srand(time(0));
         art.sifra[2]=rand()%10+'0';
         art.sifra[3]=rand()%10+'0';
         art.sifra[4]=rand()%10+'0';
+        art.sifra[5]=0;
         strcpy(pom1,art.sifra);
     }while(trazi_sifra(pom1,root,1));}
     return art.sifra;
 }
 
+
 int trazi_sifra(char *sifra, NODE *korijen, int i) // trazenje zadane osobe
 {
-    if(!i && (korijen==0 || strcmp(art.vrsta,korijen->c.vrsta)==0)) return 0;
-    else if (korijen==0) return 0;
-    if(!i && strncmp(sifra,korijen->c.sifra,2)==0)
-    {
-        return 1;
-    }
-    else
-        if (strcmp(sifra,korijen->c.sifra)==0)
-    {
-        return 1;
-    }
-    else if (strcmp(sifra,korijen->c.sifra)<0) return trazi_sifra (sifra,korijen->lijevi,i);
-    else return trazi_sifra (sifra,korijen->desni,i);
+    if(korijen==0) return 0;
+    else if(!i && strcmp(art.vrsta,korijen->c.vrsta)==0 && strncmp(sifra,korijen->c.sifra,2)==0) return 0;
+    ///printf("%s, %s\n",sifra, korijen->c.sifra);
+    if(!i && (strcmp(art.vrsta,korijen->c.vrsta)!=0 && strncmp(sifra,korijen->c.sifra,2)==0)) return 1;
+    else if(i && strcmp(sifra,korijen->c.sifra)==0) return 1;
+    else if(strcmp(sifra, korijen->c.sifra)<0) return trazi_sifra(sifra,korijen->lijevi,i);
+    else return trazi_sifra(sifra,korijen->desni,i);
 }
 
 
@@ -60,6 +60,23 @@ NODE* noviart (artikal *a)   // binarno stablo dodavanje prvog cvora
     novi1->lijevi=novi1->desni=0;
     novi1->c=*a;
     return novi1;
+}
+
+ptabela* noviart2 (char *naziv, char *sifra)
+{
+ ptabela *novi1=(ptabela*)malloc(sizeof(ptabela));
+ novi1->lijevi=novi1->desni=0;
+ strcpy(novi1->naziv,naziv);
+ strcpy(novi1->sifra,sifra);
+}
+
+ptabela* dodajart2 (ptabela *korijen,char *naziv, char* sifra)
+{
+    if (korijen==0) return noviart2(naziv,sifra);
+    if (strcmp(korijen->naziv,naziv)>=0)
+    korijen->lijevi=dodajart2(korijen->lijevi,naziv,sifra);
+    else korijen->desni=dodajart2(korijen->desni,naziv,sifra);
+    return korijen;
 }
 
 NODE* dodajart (NODE *korijen,artikal *a) // dodavanje covra
@@ -84,7 +101,7 @@ void inorderart(NODE* korijen)///ispis
     if(korijen!=0)
     {
       inorderart(korijen->lijevi);
-      printf("\n%-5s %-20s %8.2f %-5s %6.2f %-15s", korijen->c.sifra, korijen->c.naziv, korijen->c.kolicina, korijen->c.jedinica, korijen->c.cijena, korijen->c.vrsta);
+       printf("\n%-5s %-20s %8.2f %-5s %6.2f %-15s", korijen->c.sifra, korijen->c.naziv, korijen->c.kolicina, korijen->c.jedinica, korijen->c.cijena, korijen->c.vrsta);
       inorderart(korijen->desni);
     }
 }
@@ -93,17 +110,12 @@ NODE* ucitaj_artikle (NODE *korijen) // ucitavanje iz datoteke i smijestanje u s
 {
     FILE *dat;
     char c[1024];
-    /*if (!postoji("ARTIKLI/artikli.txt"))
-        {
-            system("mkdir ARTIKLI"); ///kreira novi folder ako ne postoji
-            dat=fopen("ARTIKLI/artikli.txt","w");
-            fclose(dat);
-        }*/
 dat= fopen ("ARTIKLI/artikli.txt","r");
     fgets(c,1024,dat);
     fgets(c,1024,dat);
     while(fscanf(dat,"%s %s %f %s %f %s", art.sifra, art.naziv, &art.kolicina,art.jedinica, &art.cijena, art.vrsta)==6)
     {
+       roo=dodajart2(roo,art.naziv,art.sifra);
        korijen=dodajart(korijen,&art);
     }
     fclose(dat);
@@ -114,12 +126,14 @@ artikal* upis()
 {
     system("cls");
     printf("NAZIV: ");scanf("%s", art.naziv);
+   strupr(art.naziv);
     printf("KOLICINA: ");scanf("%f", &art.kolicina);
     printf("MJERA: ");scanf("%s",art.jedinica);
+    strupr(art.jedinica);
     printf("CENA : ");scanf("%f", &art.cijena);
     printf("VRSTA: ");scanf("%s", art.vrsta);
+    strupr(art.vrsta);
     strcpy(art.sifra,generate());
-    system("cls");
     return &art;
 }
 
@@ -150,10 +164,53 @@ if(korijen!=0)
 NODE* traziposifri (char *sifra,NODE *korijen)
 {
     if (korijen==0) return 0;
-    if (strcmp(sifra,korijen->c.sifra)==0) return korijen;
+    if (strcmp(sifra,korijen->c.sifra)==0){strcpy(art.naziv,korijen->c.naziv); return korijen;}
     else if (strcmp(sifra,korijen->c.sifra)<0) return traziposifri (sifra,korijen->lijevi);
     else return traziposifri (sifra,korijen->desni);
 }
+
+
+ptabela* brisiartikal2 (ptabela *korijen, char* naziv)
+{
+  ptabela *pom;
+
+    if (korijen==0) return 0;
+
+    else if (strcmp(korijen->naziv,naziv)>0) korijen->lijevi=brisiartikal2(korijen->lijevi,naziv);
+    else if (strcmp(korijen->naziv,naziv)<0) korijen->desni=brisiartikal2(korijen->desni,naziv);
+    else if (korijen->lijevi==0)
+    {
+        pom=korijen->desni;
+        free(korijen);
+        return pom;
+    }
+    else if (korijen->desni==0)
+    {
+        pom=korijen->lijevi;
+        free(korijen);
+        return pom;
+    }
+    else
+    {
+        pom=najmanjia2(korijen->desni);
+        strcpy(korijen->naziv,pom->naziv);
+        strcpy(korijen->sifra,pom->sifra);
+        korijen->desni=brisiartikal2(korijen->desni,korijen->naziv);
+    }
+
+    return korijen;
+}
+
+
+ptabela* najmanjia2(ptabela* root)
+{
+    while (root->lijevi != NULL) root=root->lijevi;
+    return root;
+}
+
+
+
+
 
 NODE* brisiartikal(NODE *korijen, char* sifra)
 {
@@ -192,20 +249,23 @@ NODE* najmanjia(NODE* root)
     return root;
 }
 
-int izmjenaartikla(NODE* korijen,artikal* a)
+int izmjenaartikla(char* sifra,NODE* korijen)
 {
-    if (strcmp(a->sifra,korijen->c.sifra)==0)
+    if (korijen==0) return 0;
+    if (strcmp(sifra,korijen->c.sifra)==0)
     {
-        korijen->c.cijena=a->cijena;
-        strcpy(korijen->c.naziv,a->naziv);
-        strcpy(korijen->c.vrsta,a->vrsta);
-        strcpy(korijen->c.jedinica,a->jedinica);
-        korijen->c.kolicina=a->kolicina;
+        printf("Unesite novu kolicinu artikla \"%s\" (stara kolicina %4.2f): ", korijen->c.naziv, korijen->c.kolicina);
+        scanf("%f",&korijen->c.kolicina);
+        printf("Unesite novu jedinicu mjere artikla \"%s\" (stara mjera %-5s): ",korijen->c.naziv, korijen->c.jedinica);
+        scanf("%s",korijen->c.jedinica);
+        strupr(korijen->c.jedinica);
+        printf("Unesite novu cijenu artikla \"%s\" (stara cijena %4.2f): ", korijen->c.naziv, korijen->c.cijena);
+        scanf("%f",&korijen->c.cijena);
+        return 1;
     }
-    else if (strcmp(sifra,korijen->c.sifra)<0) return izmjenaartikla (korijen->lijevi,a);
-    else return izmjenaartikla (korijen->desni,a);
+    else if (strcmp(sifra,korijen->c.sifra)<0) return izmjenaartikla (sifra,korijen->lijevi);
+    else return izmjenaartikla (sifra,korijen->desni);
 }
-
 
 
 
@@ -214,11 +274,11 @@ void menin()
     FILE *dat;
     char izbor;
     int provjera;
-    printf ("\t\t     Dobrodosli u panel za upravljanje robom!\n\n");
-    Sleep(100);
-    printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
     do
     {
+         printf ("\t\t     Dobrodosli u panel za upravljanje robom!\n\n");
+        Sleep(100);
+        printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
         printf ("\n\t\t 1 Pregled robe");
         printf ("\n\t\t 2 Dodaj robu");
         printf ("\n\t\t 3 Brisi robu");
@@ -238,6 +298,7 @@ void menin()
         else if(izbor=='2')
         {
             root=dodajart(root,upis());
+            roo=dodajart2(roo,art.naziv,art.sifra);
             system("cls");
         }
         else if (izbor=='3')
@@ -246,32 +307,39 @@ void menin()
              do
             {
                 system ("cls");
-                printf ("Unesite sifru artikla: ");
-                scanf ("%s",art.sifra);
-                provjera=traziposifri(art.sifra,root);
+                printf ("Unesite ime artikla: ");
+                scanf ("%s",art.naziv);
+                strupr(art.naziv);
+                provjera=trazipoimenu(art.naziv,roo);
                 if (provjera==0)
                 {
-                    printf ("Unesena sifra ne postoji!");
-                    Sleep(500);
+                    printf ("Uneseni artikal ne postoji!");
+                    Sleep(1000);
                     system("cls");
                     printf ("Za dalje brisanje pritisnite 1: ");
-                    scanf ("%d",&provjera);
+                    provjera=(int)getch()-'0';
                     provjera--;
                     system("cls");
                 }
-                else {root=brisiartikal(root,art.sifra);}
+                else {  traziposifri(art.sifra,root);
+                        root=brisiartikal(root,art.sifra);
+                        roo=brisiartikal2(roo,art.naziv);
+
+                    }
          }while (provjera==0);
             system("cls");
          }
 
          else if(izbor=='4')
          {
-             printf ("Unesite sifru artikla: ");
-             scanf ("%s",art.sifra);
-            if (traziposifri(art.sifra,root)==0) {printf ("Sifra ne postoji!"); Sleep(600);}
+             system("cls");
+             printf ("Unesite ime artikla: ");
+             scanf ("%s",art.naziv);
+             strupr(art.naziv);
+            if (trazipoimenu(art.naziv,roo)==0) {printf ("Artikal ne postoji!"); Sleep(600);}
             else {
 
-                izmjenaartikla(root,upis());
+                izmjenaartikla(art.sifra,root);
             }
             system("cls");
          }
@@ -287,4 +355,16 @@ void menin()
     upisi(dat,root);
 }
 
+
+int trazipoimenu(char* naziv,ptabela* korijen)
+{
+    if (korijen==0) return 0;
+    if (strcmp(naziv,korijen->naziv)==0)
+    {
+        strcpy(art.sifra,korijen->sifra);
+        return 1;
+        }
+    else if (strcmp(naziv,korijen->naziv)<0)  return trazipoimenu (naziv,korijen->lijevi);
+    else return  trazipoimenu (naziv,korijen->desni);
+}
 

@@ -1,5 +1,7 @@
-rbr.    username         sifra                 ime                 prezime             pr.
-====    ===============  ===================   ===============     ===============     ===
-1. 	admin		 admin		       Aljosa              Kotur                A
-2.	nab		 nab		       Aljosa		   Kotur  		N
-3.	rad		 rad		       Aljosa		   Kotur		R
+username         sifra                  ime                 prezime             pr.
+===============  ====================   ===============     ===============     ===
+admin1           admin1                 MILOVAN             BOSANCIC             A
+nab              nab                    MILOVAN             BOSANCIC             N
+rad              rad                    ALJOSA              KOTUR                R
+exit             exit                   EXIT                EXIT                 R
+admin            admin                  ALJOSA              KOTUR                A

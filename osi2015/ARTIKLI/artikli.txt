@@ -1,8 +1,7 @@
 SIFRA NAZIV                KOLICINA MJERA CIJENA VRSTA
 ===== ==================== ======== ===== ====== ===============
-v0219 klementina              20.00 kg      2.00 voce           
-a0500 ekser                 1000.00 kom     0.50 alat           
-v1500 rosa                     0.50 kom     0.50 voda           
-v1500 senzacija              215.00 kom     0.80 voda           
-v1500 jana                   115.00 kom     0.65 voda           
-v0500 jabuka                 500.00 k       1.09 voce           
+K0500 ANANAS                  20.00 KG      1.50 KUPOVNI        
+V1019 KNJAZ_MILOS            100.00 1.5L    0.85 VODA           
+V1500 JAMNICA                100.00 KOM     0.30 VODA           
+V0500 JABUKA                 100.00 KG      0.90 VOCE           
+A0500 EKSER                    0.00 KG      1.50 ALAT           

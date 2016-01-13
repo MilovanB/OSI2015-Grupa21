@@ -2,13 +2,13 @@
 clanovi a;
 CVOR *korijen=0;
 char priv,ulogovani[20];
-char imepreduzeca[25];
+char imepreduzeca[25]="KONZUN";
 
 
 int postoji (const char *str) // provjera da li postoji datoteka
 {              ///napraviti da prima const char * da bi sluzilo i za artikle
     FILE *dat;
-    if (dat=fopen(str,"r"))  ///dat=fopen(const char* ,"r")
+    if (dat=fopen(str,"r"))
     {
         fclose(dat);
         return 1;
@@ -35,18 +35,21 @@ CVOR* dodaj (CVOR *korijen,clanovi *a) // dodavanje covra
 
 CVOR* ucitaj_clanove (CVOR *korijen) // ucitavanje iz datoteke i smijestanje u stablo
 {
-    FILE *dat;
+    FILE *dat,*dat1;
     char c[1024];
     if (!postoji("CLANOVI/clanovi.txt"))
         {
             system("mkdir CLANOVI"); ///kreira novi folder ako ne postoji
             dat=fopen("CLANOVI/clanovi.txt","w");
-            fprintf(dat,"rbr.    username         sifra                 ime                 prezime             pr.\n");
-            fprintf(dat,"====    ===============  ===================   ===============     ===============     ===\n");
+            fprintf(dat,"username         sifra                 ime                 prezime             pr.\n");
+            fprintf(dat,"===============  ===================   ===============     ===============     ===\n");
             printf ("Dobrodosli u softver!");
             system("COLOR F");
             printf (" Molimo Vas unesite ime Vase prodavnice: ");
             gets(imepreduzeca);
+            dat1=fopen("pomocna.txt","a");
+            fprintf(dat1,"%s",imepreduzeca);
+            fclose(dat1);
             system("cls");
             printf ("Jos samo par koraka i Vasa prodavnica '%s' je spremna za koristenje!\n\n",imepreduzeca);
             Sleep(100);
@@ -59,11 +62,15 @@ CVOR* ucitaj_clanove (CVOR *korijen) // ucitavanje iz datoteke i smijestanje u s
 dat= fopen ("CLANOVI/clanovi.txt","r");
     fgets(c,1024,dat);
     fgets(c,1024,dat);
-    while ((fscanf (dat,"%*d. %s  %s  %s  %s %c",a.username,a.pword,a.ime,a.prezime,&a.pr))==5)  //ucitavanje u strukturu
+    while ((fscanf (dat,"%s  %s  %s  %s %c",a.username,a.pword,a.ime,a.prezime,&a.pr))==5)  //ucitavanje u strukturu
     {
        korijen=dodaj(korijen,&a);
     }
     fclose(dat);
+dat1=fopen("pomocna.txt","r");
+fgets(c,1024,dat1);
+fgets(imepreduzeca,25,dat1);
+fclose(dat1);
 return korijen;
 }
 
@@ -107,6 +114,8 @@ void login () // logovanje    ostalo je jos centrirati
         fflush(stdin);
     printf ("\t\t\t\tUSERNAME: ");
     gets (username);
+    strlwr(username);
+    if (strcmp(username,"exit")==0) return 0;
     printf ("\t\t\t\t");
     strcpy(pword,sifra());
  provjera=trazi(username,pword,korijen);
@@ -175,13 +184,16 @@ clanovi* podaci (int i)  // unos novog clana
 
     printf ("\nIME: ");
     scanf ("%s",a.ime);
+    strupr(a.ime);
     printf ("PREZIME:");
     scanf ("%s",a.prezime);
+    strupr(a.prezime);
     if (i==1) do
         {
             system ("cls");
             printf ("Unesite privilegiju radnika (A-admin, N-nabavka, R-radnik): ");
             scanf ("%c",&a.pr);
+            strupr(&a.pr);
         }
         while (a.pr!='A' && a.pr!='N' && a.pr!='R');
     else

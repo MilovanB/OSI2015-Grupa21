@@ -1,9 +1,12 @@
 #include "radnik.h"
+KORPA korp;
+int brracuna;
 
 void menir()
 {
     char izbor;
     int provjera;
+    FILE* dat;
     printf ("\t\t     Dobrodosli u panel za prodaju robe!\n\n");
     Sleep(100);
     printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
@@ -33,39 +36,96 @@ void menir()
                         system("cls");
                         }
     }while(izbor!='0');
-}
+    upisart(dat);
+    upisi(dat,root);
+    dat=fopen("pomocna.txt","w");
+    fprintf(dat,"%d\n",brracuna);
+    fprintf(dat,"%s",imepreduzeca);
 
+    fclose(dat);
+}
+//------------------------------------------------------------------------------
 void prodaja()
 {
     char c;
-FILE *dat;
+    char gprov;
 int p;
-
+NODE* pom;
+korp.niz=(artikal*)malloc(sizeof(artikal));
+korp.i=1;
+do{
+//----------------------------------------------------------------------------------------
 do{
     system("cls");
-        c='D';
+        c='n';
+        gprov='n';
+
     printf ("Unesite naziv artikla: ");
     scanf ("%s",art.naziv);
-    printf ("\n%s\n",art.naziv);
-    p=trazipoimenu(art.naziv,root);
-    printf ("%d\n\n",p);
-   if (p==1) {printf ("Trazeni artikal '%s' ne postoji trenutno na stanju.\nZelite li dalju prodaju? D/N: ",art.naziv); c=getch(); system("cls");}
-   else if (p==0) {printf ("Trazeni artikal '%s' trenutno ne postoji u prodavnici\nZelite li dalju prodaju? D/N: ",art.naziv);
-    c=getch();
-    system("cls");}
+    strupr(art.naziv);
+    p=trazipoimenu(art.naziv,roo);
+  if (p) pom=traziposifri(art.sifra,root);
+   if (p==0) {system("cls");printf ("Trazeni artikal \"%s\" trenutno ne postoji u prodavnici\nZelite li dalju kupovinu? D/N: ",art.naziv);p=0; c=getch(); system("cls");}
+   else if (pom->c.kolicina==0)
+   {system("cls");
+       printf ("Trazeni artikal \"%s\" ne postoji trenutno na stanju.\nZelite li dalju kupovinu? D/N: ",art.naziv);p=0; c=getch(); system("cls");}
 } while (c=='D' || c=='d');
-}
-
-
-int trazipoimenu(char* naziv,NODE* korijen)
+if (p==1)
 {
-    if (korijen==0) return 0;
-    printf ("\n%s\n",korijen->c.naziv);
-    if (strcmp(naziv,korijen->c.naziv)==0)
+    do
     {
-        if (korijen->c.kolicina==0) return 1;
-        else return 2;
-        }
-    else if (strcmp(naziv,korijen->c.naziv)<0)  return trazipoimenu (naziv,korijen->lijevi);
-    else return  trazipoimenu (naziv,korijen->desni);
+        system("cls");
+        p=0;
+    printf ("Unesite kolicinu \"%s\" po \"%s\" [ cijena %.2fKM ]: ",pom->c.naziv,pom->c.jedinica,pom->c.cijena);
+    scanf ("%f",&art.kolicina);
+                                if (art.kolicina <= 0)
+                                {
+                                    printf ("Unesena kolicina nije validna!\n");
+                                    printf ("Za dalju kupovinu pritisnite 1:");
+                                    p=(int)getch()-'0';
+                                }
+                                else if (pom->c.kolicina-art.kolicina<0)
+                                {
+                                printf("Nema toliko na stanju! [%.2f na stanju]",pom->c.kolicina);
+                                printf("\nZa dalju kupovinu pritisnite 1: ");
+                                p=(int)getch()-'0';
+                                }
+                                else
+                                {
+                                 pom->c.kolicina-=art.kolicina;
+                                 korp.niz=(artikal*)realloc(korp.niz,sizeof(artikal)*(++korp.i));
+                                 korp.niz[korp.i-2]=pom->c;
+                                 korp.niz[korp.i-2].kolicina=art.kolicina;
+                                 korp.cijena+=pom->c.cijena*art.kolicina;
+                                 }
+
+
+}while (p==1);
+                            {
+                            system("cls");
+                            printf("NAZIV                KOLICINA MJERA CIJENA IZNOS   \n");
+                            printf("==================== ======== ===== ====== ========\n");
+                            for (int i=0;i<korp.i-1;i++)
+                            printf("%-20s %8.2f %-5s %6.2f %6.2fKM\n",korp.niz[i].naziv,korp.niz[i].kolicina,korp.niz[i].jedinica,korp.niz[i].cijena,korp.niz[i].cijena*korp.niz[i].kolicina);
+                            printf("---------------------------------------------------\n");
+                            printf("UKUPNA CIJENA:                             %6.2fKM\n",korp.cijena);
+                            printf("==================== ======== ===== ====== ========\n\n\n");
+                            }
+printf ("\nZelite li jos nesto?D/N: ");
+gprov=getch();
 }
+
+//--------------------------------------------------------------------------------------------------
+}while (gprov=='D' || gprov=='d');
+if (korp.i!=1)
+{
+    if(pisiracun (&korp)==12){system("cls"); printf ("Racun izdan!\n");}
+    else printf ("Greska!\n");
+    Sleep(1000);
+    system("cls");
+}
+free(korp.niz);
+}
+
+
+

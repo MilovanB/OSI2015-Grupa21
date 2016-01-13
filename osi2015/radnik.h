@@ -4,8 +4,17 @@
 #include "clan.h"
 #include "nabavljac.h"
 
+
+typedef struct{
+artikal *niz;
+int i;
+float cijena;
+} KORPA;
+
+extern KORPA korp;
+extern int brracuna;
 void menir();
 void prodaja();
-int trazipoimenu(char*,NODE*);
+
 
 #endif // RADNIK_H_INCLUDED

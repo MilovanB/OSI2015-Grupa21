@@ -14,9 +14,8 @@ void glavnimeni ()
 
 int main ()
 {
-    NODE *pom=0;
     korijen=ucitaj_clanove(korijen);
-    root=ucitaj_artikle(pom);
+    root=ucitaj_artikle(root);
     login();
     glavnimeni();
 }

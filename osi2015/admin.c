@@ -169,7 +169,31 @@ void menia() /// nije gotovo
             system("cls");
         }
     }
-    while (izbor!='0' && priv=='A') ;
+    while (izbor!='0' && priv=='A');
+    upisclan();
+    upisiclan(korijen);
 
 }
 
+void upisclan ()
+{
+     FILE *dat;
+     dat=fopen("CLANOVI/clanovi.txt","w");
+     fprintf(dat,"username         sifra                  ime                 prezime             pr.\n");
+     fprintf(dat,"===============  ====================   ===============     ===============     ===");
+     fclose(dat);
+}
+
+void upisiclan (CVOR* korijen)
+{
+    FILE *dat;
+     dat=fopen("CLANOVI/clanovi.txt","a");
+if(korijen!=0)
+    {
+        fprintf(dat,"\n%-15s  %-20s   %-15s     %-15s      %c",korijen->b.username, korijen->b.pword, korijen->b.ime,korijen->b.prezime,korijen->b.pr);
+
+        upisiclan(korijen->lijevi);
+        upisiclan(korijen->desni);
+    }
+    fclose(dat);
+}

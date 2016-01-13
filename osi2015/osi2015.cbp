@@ -46,6 +46,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="nabavljac.h" />
+		<Unit filename="racun.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="racun.h" />
 		<Unit filename="radnik.c">
 			<Option compilerVar="CC" />
 		</Unit>
