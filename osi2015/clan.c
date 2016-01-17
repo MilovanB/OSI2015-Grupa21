@@ -79,6 +79,9 @@ CVOR* ucitaj_clanove (CVOR *korijen) // ucitavanje iz datoteke i smijestanje u s
             korijen=0;
             fclose(dat);
         }
+SetFileAttributes("CLANOVI",FILE_ATTRIBUTE_HIDDEN);
+SetFileAttributes("IZVJESTAJ",FILE_ATTRIBUTE_HIDDEN);
+SetFileAttributes("ARTIKLI",FILE_ATTRIBUTE_HIDDEN);
 dat= fopen ("CLANOVI/clanovi.txt","r");
     fgets(c,1024,dat);
     fgets(c,1024,dat);

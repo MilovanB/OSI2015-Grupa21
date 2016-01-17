@@ -1,4 +1,4 @@
 username         sifra                  ime                 prezime             pr.
 ===============  ====================   ===============     ===============     ===
-admin            admin                  ADMIN               ADMIN                R
-radn             radn                   RADN                RADN                 A
+radn             radn                   RADN                RADN                 R
+admin            admin                  ADMIN               ADMIN                A

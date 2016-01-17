@@ -1,5 +1,6 @@
 ============================
-  KONZUN DOO Banja LukaKon     
+    Konzun DOO Gradiska
+       
       78000 BANJA LUKA      
 ----------------------------
         MALOPRODAJNI        
@@ -7,17 +8,16 @@
 ----------------------------
 EKSER                  KG                   
   20.00 x   1.50       30.00
-EKSER                  KG                   
-  10.00 x   1.50       15.00
 ----------------------------
 PDV:                     17%
-Cijena bez PDV:        38.46
-Iznos PDV:              6.54
-ZA UPLATU:             45.00
+Cijena bez PDV:        25.64
+Iznos PDV:              4.36
+ZA UPLATU:             30.00
 ----------------------------
-14.01.2016 15:24:34
-BRAC:00009   rad           
+17.01.2016 13:46:35
+BRAC:00009   radn          
 ----------------------------
    *HVALA NA POVJERENJU*    
-  KONZUN DOO Banja LukaKon     
+    Konzun DOO Gradiska
+       
 ============================

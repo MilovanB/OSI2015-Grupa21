@@ -1,7 +1,7 @@
 SIFRA NAZIV                KOLICINA MJERA CIJENA VRSTA
 ===== ==================== ======== ===== ====== ===============
-K0500 ANANAS                   7.00 KG      1.50 KUPOVNI        
-V1019 KNJAZ_MILOS              0.00 1.5L    0.85 VODA           
-V1500 JAMNICA                  0.00 KOM     0.30 VODA           
+A0500 EKSER                   16.00 KG      1.50 ALAT           
 V0500 JABUKA                   4.00 KG      0.90 VOCE           
-A0500 EKSER                   76.00 KG      1.50 ALAT           
+V1500 JAMNICA                  0.00 KOM     0.30 VODA           
+V1019 KNJAZ_MILOS              0.00 1.5L    0.85 VODA           
+K0500 ANANAS                   7.00 KG      1.50 KUPOVNI        
