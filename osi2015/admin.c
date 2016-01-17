@@ -3,13 +3,13 @@
 
 
 
-CVOR* najmanji(CVOR* korijen)
+CVOR* najmanji(CVOR* korijen) ///najmanji cvor
 {
     while (korijen->lijevi != NULL) korijen=korijen->lijevi;
     return korijen;
 }
-
-CVOR* brisi(CVOR *korijen, char* username)
+//-------------------------------------------------------------
+CVOR* brisi(CVOR *korijen, char* username) ///brisanje cvora
 {
     CVOR *pom;
 
@@ -37,14 +37,14 @@ CVOR* brisi(CVOR *korijen, char* username)
     }
     return korijen;
 }
-
+///----------------------------------------------------------
 
 void zaglavlje () //osnovno zaglavlje
 {
     printf ("prezime         ime             username        pr.\n");
     printf ("=============== =============== =============== ===\n");
 }
-
+//--------------------------------
 void inorder (CVOR *korijen) // sortiranje inorder
 {
     if (korijen!=0)
@@ -56,9 +56,9 @@ void inorder (CVOR *korijen) // sortiranje inorder
         }
 }
 
+//-------------------------------
 
-
-int trazi_bezpw (char *username,CVOR *korijen, int i)
+int trazi_bezpw (char *username,CVOR *korijen, int i) //trazenje clana preko username
 {
     if (korijen==0) return 0;
     if (strcmp(username,korijen->b.username)==0)
@@ -84,8 +84,8 @@ int trazi_bezpw (char *username,CVOR *korijen, int i)
     else if (strcmp(username,korijen->b.username)<0) return trazi_bezpw (username,korijen->lijevi,i);
     else return trazi_bezpw (username,korijen->desni,i);
 }
-
-void menia() /// nije gotovo
+//--------------------------------------
+void menia() /// meni administratora
 {
     char izbor;
     int provjera;
@@ -148,7 +148,7 @@ void menia() /// nije gotovo
                 system("cls");
             }
         }
-        else if (izbor=='4') {
+        else if (izbor=='4') {  ///izvjestaji
                 system("cls");
                 char ch, datum[20], buf[100], godina[6], mjesec[3],dan[3];
                 NODE* pom=0;
@@ -156,7 +156,7 @@ void menia() /// nije gotovo
                 printf("\t\t\t\t\b\b\b1 Dnevna statistika\n\t\t\t\t\b\b\b2 Mjesecna statistika\n\t\t\t\t\b\b\b3 Godisnja statistika\n");
                 ch=izbor1();
                 system("cls");
-                if(ch=='1')
+                if(ch=='1') /// izvjestaj dnevni
                 {
                     printf("\t Unesite datum za koji zelite da pregledate statistiku \n\n\t\t\t(format dd-mm-gggg): ");
                     scanf("%s", datum);
@@ -188,7 +188,7 @@ void menia() /// nije gotovo
                     printf ("\n\nPritisnite bilo koje dugme za nastavak izvrsavanja programa...");
                 getch();
                 }
-                else if(ch=='2')
+                else if(ch=='2') ///mjesecni
                 {
                     printf("\tUnesite mjesec i godinu za koji zelite da pregledate statistiku\n\n\t\t\t(format: mm-gggg): ");
                     scanf("%s",datum);
@@ -230,7 +230,7 @@ void menia() /// nije gotovo
                     printf ("\n\nPritisnite bilo koje dugme za nastavak izvrsavanja programa...");
                     getch();
                 }
-                else if(ch=='3')
+                else if(ch=='3') ///godisnji
                 {
                     printf("\t\t\bUnesite godinu za koju zelite da pregledate statistiku \n\n\t\t\t (format gggg): ");
                     scanf("%s",godina);
@@ -305,8 +305,8 @@ void menia() /// nije gotovo
     upisiclan(korijen);
 
 }
-
-void upisclan ()
+///------------------------------------------------------
+void upisclan () /// upisivanje zaglavnja u datoteku
 {
      FILE *dat;
      dat=fopen("CLANOVI/clanovi.txt","w");
@@ -314,8 +314,8 @@ void upisclan ()
      fprintf(dat,"===============  ====================   ===============     ===============     ===");
      fclose(dat);
 }
-
-void upisiclan (CVOR* korijen)
+//-------------------------------------------------------------------------
+void upisiclan (CVOR* korijen)  /// upisivanje clanova u datoteku
 {
     FILE *dat;
      dat=fopen("CLANOVI/clanovi.txt","a");

@@ -2,7 +2,7 @@
 KORPA korp;
 
 
-void menir()
+void menir() /// meni radnika
 {
     char izbor;
     int provjera;
@@ -48,7 +48,7 @@ void menir()
     fclose(dat);
 }
 //------------------------------------------------------------------------------
-void prodaja()
+void prodaja() /// prodaja artikla/izdavanje racuna
 {
     char c;
     char gprov;

@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="nabavljac.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="admin.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="12392" topLine="359" />
-		</Cursor>
-	</File>
-	<File name="nabavljac.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="739" topLine="19" />
-		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="323" topLine="12" />
+			<Cursor1 position="12519" topLine="298" />
 		</Cursor>
 	</File>
 	<File name="radnik.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -21,29 +11,29 @@
 			<Cursor1 position="115" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="racun.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="nabavljac.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="90" topLine="0" />
+			<Cursor1 position="461" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="main.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="561" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="nabavljac.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4548" topLine="112" />
 		</Cursor>
 	</File>
 	<File name="racun.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2916" topLine="69" />
+			<Cursor1 position="3688" topLine="91" />
 		</Cursor>
 	</File>
-	<File name="radnik.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="clan.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="33" topLine="51" />
-		</Cursor>
-	</File>
-	<File name="clan.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="186" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="admin.c" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5554" topLine="168" />
+			<Cursor1 position="7510" topLine="229" />
 		</Cursor>
 	</File>
 	<File name="admin.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -51,9 +41,19 @@
 			<Cursor1 position="88" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="clan.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="clan.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6800" topLine="231" />
+			<Cursor1 position="186" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="racun.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="90" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="radnik.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1321" topLine="117" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

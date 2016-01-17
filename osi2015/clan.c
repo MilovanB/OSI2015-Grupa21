@@ -5,12 +5,12 @@ CVOR *korijen=0;
 char priv,ulogovani[20];
 char imepreduzeca[25];
 
-char izbor1()
+char izbor1() /// zabrana unosa vise karaktera
 {
   fflush(stdout);
  return getch();
 }
-
+//-----------------------------------------------------------
 int postoji (const char *str) // provjera da li postoji datoteka
 {              ///napraviti da prima const char * da bi sluzilo i za artikle
     FILE *dat;
@@ -21,7 +21,7 @@ int postoji (const char *str) // provjera da li postoji datoteka
     }
     return 0;
 }
-
+//------------------------------------------------------------
 CVOR* novi (clanovi *a)   // binarno stablo dodavanje prvog cvora
 {
     CVOR *novi1=(CVOR*)malloc(sizeof(CVOR));
@@ -29,7 +29,7 @@ CVOR* novi (clanovi *a)   // binarno stablo dodavanje prvog cvora
     novi1->b=*a;
     return novi1;
 }
-
+//---------------------------------------------------------------------------
 CVOR* dodaj (CVOR *korijen,clanovi *a) // dodavanje covra
 {
     if (korijen==0) return novi(a);
@@ -38,7 +38,7 @@ CVOR* dodaj (CVOR *korijen,clanovi *a) // dodavanje covra
     else  korijen->desni=dodaj(korijen->desni,a);
     return korijen;
 }
-
+//------------------------------------------------------------------------
 CVOR* ucitaj_clanove (CVOR *korijen) // ucitavanje iz datoteke i smijestanje u stablo
 {
     FILE *dat,*dat1;
@@ -93,7 +93,7 @@ fscanf(dat,"%d",&brracuna);
 fclose(dat1);
 return korijen;
 }
-
+//---------------------------------------------------------------
 char* sifra () // zvijezdice
 {
     int ch;
@@ -121,8 +121,8 @@ char* sifra () // zvijezdice
   pword[i] = '\0';
   return pword;
 }
-
-int login () // logovanje    ostalo je jos centrirati
+//-------------------------------------------------------------------------
+int login () // logovanje
 {
   int ch;
   char pword[32],username[15],pom[32];
@@ -169,7 +169,7 @@ int trazi (char *username,char *password, CVOR *korijen) // trazenje zadane osob
     else if (strcmp(username,korijen->b.username)<0) return trazi (username,password,korijen->lijevi);
     else return trazi (username,password,korijen->desni);
 }
-
+//-----------------------------------------------------------------------------------------------
 clanovi* podaci (int i)  // unos novog clana
 {
     char c[100];
@@ -230,7 +230,7 @@ clanovi* podaci (int i)  // unos novog clana
 system("cls");
     return &a;
 }
-
+//---------------------------------------------------------------------------------------
 CVOR* PromLicnihPod ()  // mijenjanje licnih podataka nekog clana
 {
     char pom[20];
@@ -248,8 +248,8 @@ CVOR* PromLicnihPod ()  // mijenjanje licnih podataka nekog clana
     else system ("cls");
 
 }
-
-void brisistablo (CVOR *korijen)
+//--------------------------------------------
+void brisistablo (CVOR *korijen) // brisanje stabla clanova
 {
     if (korijen!=0)
     {

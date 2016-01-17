@@ -15,7 +15,7 @@ void glavnimeni ()
 
 int main ()
 {
-    char c;
+    char c; // primjenjiva za vracanje u login
     int i=1;
     korijen=ucitaj_clanove(korijen);
     root=ucitaj_artikle(root);

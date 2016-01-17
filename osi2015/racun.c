@@ -1,8 +1,8 @@
 #include "racun.h"
-float ucijena=0;
-NODE izvjestaj;
+float ucijena=0; // ukupna cijena
+NODE izvjestaj;  /// cvor za izvjestaj
 
-int pisiracun (KORPA *a)
+int pisiracun (KORPA *a) ///stampanje raucna
 {
 
     FILE *dat;
@@ -52,7 +52,7 @@ int pisiracun (KORPA *a)
      return 12;
 }
 
-void dizvjestaj (artikal a)
+void dizvjestaj (artikal a) /// dnevni izvjestaj, preko kojeg se rade svi ostali
 {
 
     NODE *pom=0;
@@ -64,7 +64,7 @@ void dizvjestaj (artikal a)
     ucijena+=a.cijena*a.kolicina;
 }
 
-void krajsmjene(NODE *korijen)
+void krajsmjene(NODE *korijen) /// zavrsavanje izvjestaja pri izlasku iz programa
 {
     FILE* dat;
      time_t     now;
@@ -107,7 +107,7 @@ SetFileAttributes(putanja,FILE_ATTRIBUTE_READONLY);
 }
 
 
-void isracun(NODE *korijen,FILE* dat,char* putanja)
+void isracun(NODE *korijen,FILE* dat,char* putanja) ///upis racuna u datoteke
 {
     dat=fopen(putanja,"a");
     if(korijen!=0)
