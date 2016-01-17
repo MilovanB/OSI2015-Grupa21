@@ -1,10 +1,5 @@
 #include "admin.h"
 
-char izbor1()
-{
-  fflush(stdout);
- return getch();
-}
 
 
 
@@ -94,10 +89,10 @@ void menia() /// nije gotovo
 {
     char izbor;
     int provjera;
-
+    FILE* dat;
     do
     {
-    printf ("\t\t     Dobrodosli u administrativni panel!\n\n");
+    printf ("\t\t     Dobrodosli u administrativni panel!\n\n\t\t\t\b\b\bUlogovani ste kao: %s\n\n",ulogovani);
     Sleep(100);
     printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
         printf ("\n\t\t 1 Pregled zaposlenih");
@@ -153,7 +148,143 @@ void menia() /// nije gotovo
                 system("cls");
             }
         }
-        else if (izbor=='4') { } ///treba zavrsiti
+        else if (izbor=='4') {
+                system("cls");
+                char ch, datum[20], buf[100], godina[6], mjesec[3],dan[3];
+                NODE* pom=0;
+                printf("\t\t\tPritisnite broj kraj zeljene opcije\n\n");
+                printf("\t\t\t\t\b\b\b1 Dnevna statistika\n\t\t\t\t\b\b\b2 Mjesecna statistika\n\t\t\t\t\b\b\b3 Godisnja statistika\n");
+                ch=izbor1();
+                system("cls");
+                if(ch=='1')
+                {
+                    printf("\t Unesite datum za koji zelite da pregledate statistiku \n\n\t\t\t(format dd-mm-gggg): ");
+                    scanf("%s", datum);
+                    mjesec[0]=datum[3];
+                    mjesec[1]=datum[4];
+                    mjesec[2]=0;
+                    strcpy(godina,&datum[6]);
+                    strcpy(buf,"IZVJESTAJ/");
+                    strcat(buf,godina);
+                    strcat(buf,"/");
+                    strcat(buf,mjesec);
+                    strcat(buf,"/ ");
+                    strcat(buf,datum);
+                    strcat(buf,".txt");
+                    if(dat=fopen(buf,"r")){
+                    system("cls");
+                    fgets(buf,sizeof buf,dat);
+                    printf("%s\n",buf);
+                    fgets(buf,sizeof buf,dat);
+                    printf("%s\n\n",buf);
+                    fgets(buf,sizeof buf,dat);fgets(buf,sizeof buf,dat);fgets(buf,sizeof buf,dat);
+                    while(fscanf(dat,"%s %s %f %s %f %s", art.sifra, art.naziv, &art.kolicina,art.jedinica, &art.cijena, art.vrsta)==6)
+                        pom=dodajart(pom,&art);
+                    fclose(dat);
+
+                    zaglavljeart();
+                    inorderart(pom);}
+                    else {printf ("\nNema podataka za uneseni datum!");}
+                    printf ("\n\nPritisnite bilo koje dugme za nastavak izvrsavanja programa...");
+                getch();
+                }
+                else if(ch=='2')
+                {
+                    printf("\tUnesite mjesec i godinu za koji zelite da pregledate statistiku\n\n\t\t\t(format: mm-gggg): ");
+                    scanf("%s",datum);
+                    mjesec[0]=datum[0];
+                    mjesec[1]=datum[1];
+                    mjesec[2]=0;
+                    strcpy(godina,&datum[3]);
+                    strcpy(dan,"01");
+                    do
+                    {
+                        strcpy(buf,"IZVJESTAJ/");
+                        strcat(buf,godina);
+                        strcat(buf,"/");
+                        strcat(buf,mjesec);
+                        strcat(buf,"/ ");
+                        strcat(buf,dan);
+                        strcat(buf,"-");
+                        strcat(buf,datum);
+                        strcat(buf,".txt");
+                        dat=fopen(buf,"r");
+
+                        fgets(buf,sizeof buf,dat);
+                        fgets(buf,sizeof buf,dat);
+                        fgets(buf,sizeof buf,dat);fgets(buf,sizeof buf,dat);fgets(buf,sizeof buf,dat);
+                        while(fscanf(dat,"%s %s %f %s %f %s", art.sifra, art.naziv, &art.kolicina,art.jedinica, &art.cijena, art.vrsta)==6)
+                        {
+                            NODE* temp=traziposifri(art.sifra,pom);
+                            if(temp&& art.cijena == temp->c.cijena) temp->c.kolicina+=art.kolicina;
+                            else pom=dodajart(pom,&art);
+                        }
+                        fclose(dat);
+                        dan[1]++;
+                        if(dan[1]>'9'){dan[1]-=10;dan[0]++;}
+                    }while(strcmp(dan,"32")<0);
+                    if (pom==0) printf ("\nNema podataka za uneseni datum!");
+                    else{
+                    zaglavljeart();
+                    inorderart(pom);}
+                    printf ("\n\nPritisnite bilo koje dugme za nastavak izvrsavanja programa...");
+                    getch();
+                }
+                else if(ch=='3')
+                {
+                    printf("\t\t\bUnesite godinu za koju zelite da pregledate statistiku \n\n\t\t\t (format gggg): ");
+                    scanf("%s",godina);
+                    system("cls");
+                    printf("UCITAVANJE, MOLIM SACEKAJTE!\n");
+                    strcpy(mjesec,"01");
+                    strcpy(dan,"01");
+                    do{
+                        strcpy(dan,"01");
+                        do
+                        {
+
+                        strcpy(buf,"IZVJESTAJ/");
+                        strcat(buf,godina);
+                        strcat(buf,"/");
+                        strcat(buf,mjesec);
+                        strcat(buf,"/ ");
+                        strcat(buf,dan);
+                        strcat(buf,"-");
+                        strcat(buf,mjesec);
+                        strcat(buf,"-");
+                        strcat(buf,godina);
+                        strcat(buf,".txt");
+                        dat=fopen(buf,"r");
+                        fgets(buf,sizeof buf,dat);
+                        fgets(buf,sizeof buf,dat);
+                        fgets(buf,sizeof buf,dat);fgets(buf,sizeof buf,dat);fgets(buf,sizeof buf,dat);
+                        while(fscanf(dat,"%s %s %f %s %f %s", art.sifra, art.naziv, &art.kolicina,art.jedinica, &art.cijena, art.vrsta)==6)
+                        {
+                            NODE* temp=traziposifri(art.sifra,pom);
+                            if(temp&& art.cijena == temp->c.cijena) temp->c.kolicina+=art.kolicina;
+                            else pom=dodajart(pom,&art);
+                        }
+                        fclose(dat);
+                        dan[1]++;
+                        if(dan[1]>'9'){dan[1]-=10;dan[0]++;}
+                        }while(strcmp(dan,"32")<0);
+                        mjesec[1]++;
+                        if(mjesec[1]>'9'){mjesec[1]-=10;mjesec[0]++;}
+                    }while(strcmp(mjesec,"13")<0);
+                    system("cls");
+                     printf("\t\t\bUnesite godinu za koju zelite da pregledate statistiku \n\n\t\t\t (format gggg): ");
+                    printf("%s\n\n",godina);
+                    if (pom==0) printf ("\nNema podataka za uneseni datum!");
+                    else{zaglavljeart();
+                    inorderart(pom);
+                    }
+                   printf ("\n\nPritisnite bilo koje dugme za nastavak izvrsavanja programa...");
+                getch();
+                }
+                system("cls");
+             brisistabloart(pom);
+
+        } ///po vrstama da ispisuje
         else if (izbor=='9')
         {
             PromLicnihPod();

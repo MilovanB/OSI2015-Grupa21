@@ -1,25 +1,23 @@
 ============================
-           KONZUN              
+  KONZUN DOO Banja LukaKon     
       78000 BANJA LUKA      
 ----------------------------
         MALOPRODAJNI        
        FISKALNI RACUN       
 ----------------------------
-CEKIC                  KOM                  
-   1.00 x   4.99        4.99
-ekser                  kg                   
-  20.00 x   1.20       24.00
-jamnica                kom                  
-  10.00 x   0.80        8.00
+EKSER                  KG                   
+  20.00 x   1.50       30.00
+JABUKA                 KG                   
+  20.00 x   0.90       18.00
 ----------------------------
 PDV:                     17%
-Cijena bez PDV:        31.62
-Iznos PDV:              5.37
-ZA UPLATU:             36.99
+Cijena bez PDV:        41.03
+Iznos PDV:              6.97
+ZA UPLATU:             48.00
 ----------------------------
-13.01.2016 00:38:03
+14.01.2016 15:12:04
 BRAC:00005   rad           
 ----------------------------
    *HVALA NA POVJERENJU*    
-           KONZUN              
+  KONZUN DOO Banja LukaKon     
 ============================

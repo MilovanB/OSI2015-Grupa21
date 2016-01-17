@@ -1,9 +1,15 @@
 #include "clan.h"
+int brracuna=1;
 clanovi a;
 CVOR *korijen=0;
 char priv,ulogovani[20];
-char imepreduzeca[25]="KONZUN";
+char imepreduzeca[25];
 
+char izbor1()
+{
+  fflush(stdout);
+ return getch();
+}
 
 int postoji (const char *str) // provjera da li postoji datoteka
 {              ///napraviti da prima const char * da bi sluzilo i za artikle
@@ -39,24 +45,38 @@ CVOR* ucitaj_clanove (CVOR *korijen) // ucitavanje iz datoteke i smijestanje u s
     char c[1024];
     if (!postoji("CLANOVI/clanovi.txt"))
         {
+            do{
+                system("cls");
+                printf ("Dobrodosli u softver!\n");
+                system("COLOR F");
+                printf ("Molimo Vas unesite ime Vase prodavnice: ");
+                gets(c);
+            }while(strlen(c)>25);
+            strcpy(imepreduzeca,c);
+            SetFileAttributes("pomocna.txt",FILE_ATTRIBUTE_NORMAL);
+            dat1=fopen("pomocna.txt","a");
+            fprintf(dat1,"%s",imepreduzeca);
+            SetFileAttributes("pomocna.txt",FILE_ATTRIBUTE_HIDDEN|FILE_ATTRIBUTE_READONLY);
+            fclose(dat1);
+
+            printf ("Jos samo par koraka i Vasa prodavnica je spremna za koristenje!\n\n");
+            Sleep(3000);
+            system("cls");
+            printf ("Za prvo pokretanje programa potrebno je kreirati novog administratora!\n");
+           korijen=dodaj(korijen,podaci(0));
+            korijen->b.pr='A';
+            system ("cls");
+            printf ("Vasa \"%s\" prodavnica je spremna za rad!\n",imepreduzeca);
+            Sleep(2000);
+            system("cls");
             system("mkdir CLANOVI"); ///kreira novi folder ako ne postoji
             dat=fopen("CLANOVI/clanovi.txt","w");
             fprintf(dat,"username         sifra                 ime                 prezime             pr.\n");
-            fprintf(dat,"===============  ===================   ===============     ===============     ===\n");
-            printf ("Dobrodosli u softver!");
-            system("COLOR F");
-            printf (" Molimo Vas unesite ime Vase prodavnice: ");
-            gets(imepreduzeca);
-            dat1=fopen("pomocna.txt","a");
-            fprintf(dat1,"%s",imepreduzeca);
-            fclose(dat1);
+            fprintf(dat,"===============  ===================   ===============     ===============     ===");
+             fprintf(dat,"\n%-15s  %-20s   %-15s     %-15s      %c",korijen->b.username, korijen->b.pword, korijen->b.ime,korijen->b.prezime,korijen->b.pr);
+            brisistablo(korijen);
             system("cls");
-            printf ("Jos samo par koraka i Vasa prodavnica '%s' je spremna za koristenje!\n\n",imepreduzeca);
-            Sleep(100);
-            printf ("Za prvo pokretanje programa potrebno je kreirati novog administratora!\n");
-            korijen=dodaj(korijen,podaci(0));
-            korijen->b.pr='A';
-            system ("cls");
+            korijen=0;
             fclose(dat);
         }
 dat= fopen ("CLANOVI/clanovi.txt","r");
@@ -68,8 +88,8 @@ dat= fopen ("CLANOVI/clanovi.txt","r");
     }
     fclose(dat);
 dat1=fopen("pomocna.txt","r");
-fgets(c,1024,dat1);
 fgets(imepreduzeca,25,dat1);
+fscanf(dat,"%d",&brracuna);
 fclose(dat1);
 return korijen;
 }
@@ -102,11 +122,11 @@ char* sifra () // zvijezdice
   return pword;
 }
 
-void login () // logovanje    ostalo je jos centrirati
+int login () // logovanje    ostalo je jos centrirati
 {
   int ch;
   char pword[32],username[15],pom[32];
-  int i = 0,provjera;
+  int i = 0,provjera,brojac=0;
   do {
       printf ("\n\n\n\n\n\n\n\n\n\n\n");
         memset(username,0,sizeof username);
@@ -114,8 +134,6 @@ void login () // logovanje    ostalo je jos centrirati
         fflush(stdin);
     printf ("\t\t\t\tUSERNAME: ");
     gets (username);
-    strlwr(username);
-    if (strcmp(username,"exit")==0) return 0;
     printf ("\t\t\t\t");
     strcpy(pword,sifra());
  provjera=trazi(username,pword,korijen);
@@ -128,8 +146,11 @@ void login () // logovanje    ostalo je jos centrirati
      printf ("\t\t\tPogresan username/password!\n");
      Sleep(800);
      system ("cls");
-     system("COLOR 7");
+     system("COLOR F");
+  brojac++;
  }
+
+ if (brojac==3) {system("COLOR C");printf ("\n\n\n\n\n\n\n\n\n\n\n\t\t\t  Pogresan unos 3 puta!"); Sleep(2000); system("COLOR F");return 0;}
 
 } while (provjera==0);
 strcpy(ulogovani,username);
@@ -151,12 +172,18 @@ int trazi (char *username,char *password, CVOR *korijen) // trazenje zadane osob
 
 clanovi* podaci (int i)  // unos novog clana
 {
+    char c[100];
     char password[32];
     int provjera,pomocna=0;
     do
     {
-        printf ("\nUSERNAME: ");
-        scanf ("%s",a.username);
+        do{
+            printf ("\nUSERNAME: ");
+            scanf ("%s",c);
+            system("cls");
+        }while(strlen(c)>15||strlen(c)<4);
+        strcpy(a.username,c);
+        printf ("USERNAME: %s\n",a.username);
         provjera=trazi_bezpw (a.username,korijen,1);
         if (provjera==1)
         {
@@ -220,4 +247,15 @@ CVOR* PromLicnihPod ()  // mijenjanje licnih podataka nekog clana
     }
     else system ("cls");
 
+}
+
+void brisistablo (CVOR *korijen)
+{
+    if (korijen!=0)
+    {
+        brisistablo(korijen->lijevi);
+        brisistablo(korijen->desni);
+        free(korijen);
+
+    }
 }

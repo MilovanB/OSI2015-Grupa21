@@ -2,7 +2,7 @@
 #define ADMIN_H_INCLUDED
 
 #include "clan.h"
-char izbor1();
+#include "racun.h"
 int trazi_bezpw (char *,CVOR *, int );
 CVOR* najmanji(CVOR* );
 CVOR* brisi(CVOR * ,char*);

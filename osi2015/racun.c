@@ -1,12 +1,11 @@
 #include "racun.h"
+float ucijena=0;
+NODE izvjestaj;
 
 int pisiracun (KORPA *a)
 {
 
     FILE *dat;
-    dat=fopen("pomocna.txt","r");
-    fscanf(dat,"%d",&brracuna);
-    fclose(dat);
     char racun[20]="racun br";
     static char ex[5]=".txt";
     char r[10];
@@ -51,4 +50,72 @@ int pisiracun (KORPA *a)
      SetFileAttributes(r,FILE_ATTRIBUTE_READONLY);
      fclose(dat);
      return 12;
+}
+
+void dizvjestaj (artikal a)
+{
+
+    NODE *pom=0;
+    if((pom=traziposifri(a.sifra,&izvjestaj))==0)
+    {
+    dodajart(&izvjestaj,&a);
+    }
+    else pom->c.kolicina+=a.kolicina;
+    ucijena+=a.cijena*a.kolicina;
+}
+
+void krajsmjene(NODE *korijen)
+{
+    FILE* dat;
+     time_t     now;
+     int i;
+    struct tm *ts;
+    char buf[80],datum[80],putanja[100];
+    char mjesec[3];
+    char godina[6];
+    now = time(NULL);
+    ts = localtime(&now);
+    strftime(buf, sizeof(buf), " %d-%m-%Y", ts);
+    strcpy(datum,buf);
+    mjesec[0]=buf[4];
+    mjesec[1]=buf[5];
+    mjesec[2]=0;
+    strcpy(godina,&buf[7]);
+    strcat(buf,".txt");
+    mkdir ("IZVJESTAJ");
+    strcpy(putanja,"IZVJESTAJ/");
+     strcat(putanja,godina);
+    mkdir (putanja);
+    strcat(putanja,"/");
+    strcat(putanja,mjesec);
+    mkdir(putanja);
+    strcat(putanja,"/");
+    strcat(putanja,buf);
+
+    SetFileAttributes(putanja,FILE_ATTRIBUTE_NORMAL);
+    dat=fopen(putanja,"w");
+     fprintf(dat,"Izvjestaj za %s - pazar: %.2f\n",datum,ucijena);
+     fprintf(dat,"--------------------------------------------\n\n");
+     fprintf(dat,"SIFRA NAZIV                KOLICINA MJERA CIJENA VRSTA");
+     fprintf(dat,"\n===== ==================== ======== ===== ====== ===============");
+        fclose(dat);
+
+    isracun(&izvjestaj,dat,putanja);
+
+SetFileAttributes(putanja,FILE_ATTRIBUTE_READONLY);
+    return 0;
+}
+
+
+void isracun(NODE *korijen,FILE* dat,char* putanja)
+{
+    dat=fopen(putanja,"a");
+    if(korijen!=0)
+    {
+        if (korijen->c.cijena!=0)
+        fprintf(dat,"\n%-5s %-20s %8.2f %-4s %7.2f %-15s", korijen->c.sifra, korijen->c.naziv, korijen->c.kolicina,korijen->c.jedinica,korijen->c.cijena, korijen->c.vrsta);
+        isracun(korijen->lijevi,dat,putanja);
+        isracun(korijen->desni,dat,putanja);
+    }
+    fclose(dat);
 }

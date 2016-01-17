@@ -1,22 +1,22 @@
 #include "radnik.h"
 KORPA korp;
-int brracuna;
+
 
 void menir()
 {
     char izbor;
     int provjera;
     FILE* dat;
-    printf ("\t\t     Dobrodosli u panel za prodaju robe!\n\n");
-    Sleep(100);
-    printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
     do
     {
+        printf ("\t\t     Dobrodosli u panel za prodaju robe!\n\n\t\t\t\b\b\bUlogovani ste kao: %s\n\n",ulogovani);
+        Sleep(100);
+        printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
         printf ("\n\t\t 1 Dodavanje robe u korpu");
         printf ("\n\t\t 2 Pregled robe");
         printf ("\n\t\t 9 Izmjena licnih informacija");
         printf ("\n\t\t 0 ODJAVA\n");
-        izbor=izbor2();
+        izbor=izbor1();
                         if (izbor=='1')
                         {
                             prodaja();
@@ -38,9 +38,12 @@ void menir()
     }while(izbor!='0');
     upisart(dat);
     upisi(dat,root);
+    SetFileAttributes("pomocna.txt",FILE_ATTRIBUTE_NORMAL);
     dat=fopen("pomocna.txt","w");
-    fprintf(dat,"%d\n",brracuna);
-    fprintf(dat,"%s",imepreduzeca);
+    fprintf(dat,"%s\n",imepreduzeca);
+    fprintf(dat,"%d",brracuna);
+
+    SetFileAttributes("pomocna.txt",FILE_ATTRIBUTE_HIDDEN|FILE_ATTRIBUTE_READONLY);
 
     fclose(dat);
 }
@@ -53,6 +56,7 @@ int p;
 NODE* pom;
 korp.niz=(artikal*)malloc(sizeof(artikal));
 korp.i=1;
+korp.cijena=0;
 do{
 //----------------------------------------------------------------------------------------
 do{
@@ -97,6 +101,7 @@ if (p==1)
                                  korp.niz[korp.i-2]=pom->c;
                                  korp.niz[korp.i-2].kolicina=art.kolicina;
                                  korp.cijena+=pom->c.cijena*art.kolicina;
+                                 dizvjestaj(korp.niz[korp.i-2]);
                                  }
 
 
@@ -126,6 +131,5 @@ if (korp.i!=1)
 }
 free(korp.niz);
 }
-
 
 

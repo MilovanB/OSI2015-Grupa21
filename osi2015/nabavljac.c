@@ -3,17 +3,11 @@ NODE *root=0;
 artikal art;
 ptabela *roo=0;
 
-char izbor2()
-{
-    fflush(stdout);
-    return getch();
-}
-
+//-----------------
 char* generate()
 {
     char pom1[6];
     int i=0;
-    printf("%d",i);
     pom1[0]=art.sifra[0]=art.vrsta[0];
     do{
         pom1[1]='0'+i;
@@ -40,8 +34,7 @@ char* generate()
     }while(trazi_sifra(pom1,root,1));}
     return art.sifra;
 }
-
-
+//----------------------------------------
 int trazi_sifra(char *sifra, NODE *korijen, int i) // trazenje zadane osobe
 {
     if(korijen==0) return 0;
@@ -52,7 +45,7 @@ int trazi_sifra(char *sifra, NODE *korijen, int i) // trazenje zadane osobe
     else if(strcmp(sifra, korijen->c.sifra)<0) return trazi_sifra(sifra,korijen->lijevi,i);
     else return trazi_sifra(sifra,korijen->desni,i);
 }
-
+//--------------------------------------------------------------------------------------
 
 NODE* noviart (artikal *a)   // binarno stablo dodavanje prvog cvora
 {
@@ -61,7 +54,7 @@ NODE* noviart (artikal *a)   // binarno stablo dodavanje prvog cvora
     novi1->c=*a;
     return novi1;
 }
-
+//------------------------------------------------------
 ptabela* noviart2 (char *naziv, char *sifra)
 {
  ptabela *novi1=(ptabela*)malloc(sizeof(ptabela));
@@ -69,43 +62,44 @@ ptabela* noviart2 (char *naziv, char *sifra)
  strcpy(novi1->naziv,naziv);
  strcpy(novi1->sifra,sifra);
 }
-
+//-----------------------------------------------------------
 ptabela* dodajart2 (ptabela *korijen,char *naziv, char* sifra)
 {
     if (korijen==0) return noviart2(naziv,sifra);
-    if (strcmp(korijen->naziv,naziv)>=0)
+    if (strcmp(korijen->naziv,naziv)>0)
     korijen->lijevi=dodajart2(korijen->lijevi,naziv,sifra);
-    else korijen->desni=dodajart2(korijen->desni,naziv,sifra);
+    else if (strcmp(korijen->naziv,naziv)<0) korijen->desni=dodajart2(korijen->desni,naziv,sifra);
     return korijen;
 }
-
+//------------------------------------------------------------------------------------------
 NODE* dodajart (NODE *korijen,artikal *a) // dodavanje covra
 {
     if (korijen==0) return noviart(a);
-    if (strcmp(korijen->c.sifra,a->sifra)>=0)
+    if (strcmp(korijen->c.sifra,sifra)==0)
+        korijen->c.kolicina+=a->kolicina;
+   else if (strcmp(korijen->c.sifra,a->sifra)>0)
           korijen->lijevi=dodajart(korijen->lijevi,a);
     else  korijen->desni=dodajart(korijen->desni,a);
     return korijen;
 }
-
-
+//------------------------------------------------------------------------------
 void zaglavljeart()///zaglavlje artikla
 {
     printf("SIFRA NAZIV                KOLICINA MJERA CIJENA VRSTA");
     printf("\n===== ==================== ======== ===== ====== ===============");
 }
-
-
+//-------------------------------------------------------------------------------------
 void inorderart(NODE* korijen)///ispis
 {
     if(korijen!=0)
     {
       inorderart(korijen->lijevi);
+        if (korijen->c.cijena!=0)
        printf("\n%-5s %-20s %8.2f %-5s %6.2f %-15s", korijen->c.sifra, korijen->c.naziv, korijen->c.kolicina, korijen->c.jedinica, korijen->c.cijena, korijen->c.vrsta);
       inorderart(korijen->desni);
     }
 }
-
+//---------------------------------------------------------------------------------------------------------------------
 NODE* ucitaj_artikle (NODE *korijen) // ucitavanje iz datoteke i smijestanje u stablo
 {
     FILE *dat;
@@ -121,22 +115,20 @@ dat= fopen ("ARTIKLI/artikli.txt","r");
     fclose(dat);
 return korijen;
 }
-
+//-------------------------------------------------------------------------------------------
 artikal* upis()
 {
-    system("cls");
-    printf("NAZIV: ");scanf("%s", art.naziv);
-   strupr(art.naziv);
-    printf("KOLICINA: ");scanf("%f", &art.kolicina);
+    do{printf("KOLICINA: ");scanf("%f", &art.kolicina);}while(art.kolicina<0);
     printf("MJERA: ");scanf("%s",art.jedinica);
     strupr(art.jedinica);
-    printf("CENA : ");scanf("%f", &art.cijena);
     printf("VRSTA: ");scanf("%s", art.vrsta);
     strupr(art.vrsta);
     strcpy(art.sifra,generate());
+    do{printf("CENA : ");scanf("%f", &art.cijena);}while(art.cijena<=0);
+
     return &art;
 }
-
+//----------------------------------------------------------------------------------
 void upisart(FILE *dat)
 {
      if (!postoji("ARTIKLI/artikli.txt"))
@@ -148,7 +140,7 @@ void upisart(FILE *dat)
      fprintf(dat,"\n===== ==================== ======== ===== ====== ===============");
      fclose(dat);
 }
-
+//------------------------------------------------------------------------------------------------
 void upisi(FILE *dat,NODE* korijen)
 {
     dat=fopen("ARTIKLI/artikli.txt","a");
@@ -160,7 +152,7 @@ if(korijen!=0)
     }
     fclose(dat);
 }
-
+//------------------------------------------------------------------------------------
 NODE* traziposifri (char *sifra,NODE *korijen)
 {
     if (korijen==0) return 0;
@@ -168,8 +160,7 @@ NODE* traziposifri (char *sifra,NODE *korijen)
     else if (strcmp(sifra,korijen->c.sifra)<0) return traziposifri (sifra,korijen->lijevi);
     else return traziposifri (sifra,korijen->desni);
 }
-
-
+//-------------------------------------------------------------------------------------------------
 ptabela* brisiartikal2 (ptabela *korijen, char* naziv)
 {
   ptabela *pom;
@@ -201,17 +192,13 @@ ptabela* brisiartikal2 (ptabela *korijen, char* naziv)
     return korijen;
 }
 
-
+//---------------------------------------------------------------------------------
 ptabela* najmanjia2(ptabela* root)
 {
     while (root->lijevi != NULL) root=root->lijevi;
     return root;
 }
-
-
-
-
-
+//---------------------------------------------------------
 NODE* brisiartikal(NODE *korijen, char* sifra)
 {
     NODE *pom;
@@ -241,34 +228,40 @@ NODE* brisiartikal(NODE *korijen, char* sifra)
 
     return korijen;
 }
-
-
+//-------------------------------------------------------------------
 NODE* najmanjia(NODE* root)
 {
     while (root->lijevi != NULL) root=root->lijevi;
     return root;
 }
-
+//------------------------------------------------------------------------
 int izmjenaartikla(char* sifra,NODE* korijen)
 {
     if (korijen==0) return 0;
     if (strcmp(sifra,korijen->c.sifra)==0)
     {
+        do
+        {
+        system("cls");
         printf("Unesite novu kolicinu artikla \"%s\" (stara kolicina %4.2f): ", korijen->c.naziv, korijen->c.kolicina);
         scanf("%f",&korijen->c.kolicina);
-        printf("Unesite novu jedinicu mjere artikla \"%s\" (stara mjera %-5s): ",korijen->c.naziv, korijen->c.jedinica);
+        }while(korijen->c.kolicina<0);
+        printf("Unesite novu jedinicu mjere artikla \"%s\" (stara mjera %s): ",korijen->c.naziv, korijen->c.jedinica);
         scanf("%s",korijen->c.jedinica);
         strupr(korijen->c.jedinica);
+        do
+        {
         printf("Unesite novu cijenu artikla \"%s\" (stara cijena %4.2f): ", korijen->c.naziv, korijen->c.cijena);
         scanf("%f",&korijen->c.cijena);
+        system("cls");
+        }while(korijen->c.cijena==0);
+        system("cls");
         return 1;
     }
     else if (strcmp(sifra,korijen->c.sifra)<0) return izmjenaartikla (sifra,korijen->lijevi);
     else return izmjenaartikla (sifra,korijen->desni);
 }
-
-
-
+//---------------------------------------------------------------------------------------------------
 void menin()
 {
     FILE *dat;
@@ -276,7 +269,7 @@ void menin()
     int provjera;
     do
     {
-         printf ("\t\t     Dobrodosli u panel za upravljanje robom!\n\n");
+         printf ("\t\t     Dobrodosli u panel za upravljanje robom!\n\n\t\t\t\b\b\bUlogovani ste kao: %s\n\n",ulogovani);
         Sleep(100);
         printf ("\t\tZa izbor pritisnite broj kraj zeljene opcije!\n");
         printf ("\n\t\t 1 Pregled robe");
@@ -285,7 +278,7 @@ void menin()
         printf ("\n\t\t 4 Izmjena robe");
         printf ("\n\t\t 9 Izmjena licnih informacija");
         printf ("\n\t\t 0 ODJAVA\n");
-        izbor=izbor2();
+        izbor=izbor1();
         if (izbor=='1')
         {
             system("cls");
@@ -297,9 +290,14 @@ void menin()
         }
         else if(izbor=='2')
         {
+            system("cls");
+            printf ("NAZIV: "); scanf ("%s",art.naziv);
+            strupr(art.naziv);
+            if (!trazipoimenu(art.naziv,roo)){
             root=dodajart(root,upis());
             roo=dodajart2(roo,art.naziv,art.sifra);
-            system("cls");
+            system("cls");}
+            else izmjenaartikla(art.sifra,root);
         }
         else if (izbor=='3')
         {
@@ -353,9 +351,10 @@ void menin()
     }while (izbor!='0');
     upisart(dat);
     upisi(dat,root);
+
 }
 
-
+//---------------------------------------------------------------------------------------
 int trazipoimenu(char* naziv,ptabela* korijen)
 {
     if (korijen==0) return 0;
@@ -368,3 +367,25 @@ int trazipoimenu(char* naziv,ptabela* korijen)
     else return  trazipoimenu (naziv,korijen->desni);
 }
 
+//------------------------------------------------------------------------
+void brisistabloart (NODE *korijen)
+{
+    if (korijen!=0)
+    {
+        brisistabloart(korijen->lijevi);
+        brisistabloart(korijen->desni);
+        free(korijen);
+
+    }
+}
+//-------------------------------------------------------------------
+void brisistabloart2 (ptabela* korijen)
+{
+    if (korijen!=0)
+    {
+        brisistabloart2(korijen->lijevi);
+        brisistabloart2(korijen->desni);
+        free(korijen);
+
+    }
+}

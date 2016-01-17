@@ -1,0 +1,7 @@
+Izvjestaj za  14-01-2016 - pazar: 0.00
+--------------------------------------------
+
+SIFRA NAZIV                KOLICINA MJERA CIJENA VRSTA
+===== ==================== ======== ===== ====== ===============
+A0500 EKSER		      20.00 KG      1.05 ALAT
+A0599 CEKIC		      5.00 KOM      4.95 ALAT

@@ -1,21 +1,21 @@
 ============================
-           KONZUN              
+  KONZUN DOO Banja LukaKon     
       78000 BANJA LUKA      
 ----------------------------
         MALOPRODAJNI        
        FISKALNI RACUN       
 ----------------------------
 EKSER                  KG                   
-   5.00 x   2.20       11.00
+  20.00 x   1.50       30.00
 ----------------------------
 PDV:                     17%
-Cijena bez PDV:         9.40
-Iznos PDV:              1.60
-ZA UPLATU:             11.00
+Cijena bez PDV:        25.64
+Iznos PDV:              4.36
+ZA UPLATU:             30.00
 ----------------------------
-13.01.2016 13:20:42
+14.01.2016 15:27:43
 BRAC:00011   rad           
 ----------------------------
    *HVALA NA POVJERENJU*    
-           KONZUN              
+  KONZUN DOO Banja LukaKon     
 ============================

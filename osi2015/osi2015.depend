@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1452688753 source:c:\users\aljosa\desktop\v3\osi2015\admin.c
+1452796105 source:c:\users\aljosa\desktop\v3\osi2015\admin.c
 	"admin.h"
 
-1452624502 c:\users\aljosa\desktop\v3\osi2015\admin.h
+1452792006 c:\users\aljosa\desktop\v3\osi2015\admin.h
 	"clan.h"
+	"racun.h"
 
-1452474606 c:\users\aljosa\desktop\v3\osi2015\clan.h
+1452800245 c:\users\aljosa\desktop\v3\osi2015\clan.h
 	<stdio.h>
 	<conio.h>
 	<ctype.h>
@@ -14,31 +15,79 @@
 	<string.h>
 	<windows.h>
 
-1452688470 source:c:\users\aljosa\desktop\v3\osi2015\clan.c
+1452800274 source:c:\users\aljosa\desktop\v3\osi2015\clan.c
 	"clan.h"
 
-1452518880 source:c:\users\aljosa\desktop\v3\osi2015\main.c
+1452783637 source:c:\users\aljosa\desktop\v3\osi2015\main.c
 	"admin.h"
 	"nabavljac.h"
 	"radnik.h"
+	"racun.h"
 
-1452518461 c:\users\aljosa\desktop\v3\osi2015\nabavljac.h
+1452800643 c:\users\aljosa\desktop\v3\osi2015\nabavljac.h
 	<time.h>
 	"clan.h"
 
-1452619143 c:\users\aljosa\desktop\v3\osi2015\radnik.h
+1452783660 c:\users\aljosa\desktop\v3\osi2015\radnik.h
 	"clan.h"
 	"nabavljac.h"
 
-1452687816 source:c:\users\aljosa\desktop\v3\osi2015\radnik.c
+1452800274 source:c:\users\aljosa\desktop\v3\osi2015\radnik.c
 	"radnik.h"
 
-1452686519 source:c:\users\aljosa\desktop\v3\osi2015\nabavljac.c
+1452792515 source:c:\users\aljosa\desktop\v3\osi2015\nabavljac.c
 	"nabavljac.h"
 
-1452619143 c:\users\aljosa\desktop\v3\osi2015\racun.h
+1452800245 c:\users\aljosa\desktop\v3\osi2015\racun.h
 	"radnik.h"
+	"clan.h"
 
-1452622791 source:c:\users\aljosa\desktop\v3\osi2015\racun.c
+1452800172 source:c:\users\aljosa\desktop\v3\osi2015\racun.c
 	"racun.h"
+
+1452860336 source:c:\users\bosancic\desktop\v3\osi2015\admin.c
+	"admin.h"
+
+1452792006 c:\users\bosancic\desktop\v3\osi2015\admin.h
+	"clan.h"
+	"racun.h"
+
+1452800245 c:\users\bosancic\desktop\v3\osi2015\clan.h
+	<stdio.h>
+	<conio.h>
+	<ctype.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<windows.h>
+
+1452800274 source:c:\users\bosancic\desktop\v3\osi2015\clan.c
+	"clan.h"
+
+1452860595 source:c:\users\bosancic\desktop\v3\osi2015\main.c
+	"admin.h"
+	"nabavljac.h"
+	"radnik.h"
+	"racun.h"
+
+1452860162 c:\users\bosancic\desktop\v3\osi2015\nabavljac.h
+	<time.h>
+	"clan.h"
+
+1452783660 c:\users\bosancic\desktop\v3\osi2015\radnik.h
+	"clan.h"
+	"nabavljac.h"
+
+1452860162 source:c:\users\bosancic\desktop\v3\osi2015\nabavljac.c
+	"nabavljac.h"
+
+1452800172 source:c:\users\bosancic\desktop\v3\osi2015\racun.c
+	"racun.h"
+
+1452800245 c:\users\bosancic\desktop\v3\osi2015\racun.h
+	"radnik.h"
+	"clan.h"
+
+1452800274 source:c:\users\bosancic\desktop\v3\osi2015\radnik.c
+	"radnik.h"
 

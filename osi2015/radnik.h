@@ -11,10 +11,12 @@ int i;
 float cijena;
 } KORPA;
 
+
 extern KORPA korp;
 extern int brracuna;
 void menir();
 void prodaja();
+
 
 
 #endif // RADNIK_H_INCLUDED
