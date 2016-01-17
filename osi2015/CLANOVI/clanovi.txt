@@ -1,5 +1,4 @@
 username         sifra                  ime                 prezime             pr.
 ===============  ====================   ===============     ===============     ===
-milovan          dragons5               MILOVAN             BOSANCIC             A
-radn             radn                   RADN                RADN                 A
 admin            admin                  ADMIN               ADMIN                R
+radn             radn                   RADN                RADN                 A
